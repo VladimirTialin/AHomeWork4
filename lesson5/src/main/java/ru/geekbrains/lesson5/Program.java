@@ -32,6 +32,8 @@ public class Program {
             System.out.println("7. Выполнить рендер модели");
             System.out.println("8. Удалить модель");
             System.out.println("9. Удалить текстуру");
+            System.out.println("10. Удалить все модели");
+            System.out.println("11. Удалить все текстуры");
             System.out.println("0. ЗАВЕРШЕНИЕ РАБОТЫ ПРИЛОЖЕНИЯ");
             System.out.print("Пожалуйста, выберите пункт меню: ");
             if (scanner.hasNextInt()){
@@ -93,6 +95,14 @@ public class Program {
                             else {
                                 System.out.println("Номер модели указан некорректно.");
                             }
+                            break;
+                        case 10:
+                            editor3D.delAll(editor3D.getModels());
+                            System.out.println("Все модели удалены.");
+                            break;
+                        case 11:
+                            editor3D.delAll(editor3D.getTextures());
+                            System.out.println("Все текстуры удалены.");
                             break;
                         default:
                             System.out.println("Укажите корректный пункт меню.");

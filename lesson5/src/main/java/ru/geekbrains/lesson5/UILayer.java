@@ -13,6 +13,5 @@ public interface UILayer {
 
     void renderAll();
     void renderModel(int i);
-    void delModel(int i);
-    void delTexture(int i);
+
 }
