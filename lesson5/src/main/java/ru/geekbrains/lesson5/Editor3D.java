@@ -1,7 +1,6 @@
 package ru.geekbrains.lesson5;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 public class Editor3D implements UILayer {
 
@@ -22,7 +21,6 @@ public class Editor3D implements UILayer {
         textures = (ArrayList<Texture>) businessLogicalLayer.getAllTextures();
         models = (ArrayList<Model3D>) businessLogicalLayer.getAllModels();
     }
-
     @Override
     public void openProject(String fileName) {
         projectFile = new ProjectFile(fileName);
@@ -90,7 +88,9 @@ public class Editor3D implements UILayer {
     public void delModel(int i) {
         if (i < 0 || i > models.size())
             throw new RuntimeException("Номер модели указан некорректно.");
-
+        // не знаю, красиво ли получилось, но все работает:)
+        models.get(i).getTextures()
+                .forEach(x -> textures.removeIf(t ->t.getId()==x.getId()));
         models.remove(i);
         System.out.println("Деталь удалена!");
     }
@@ -99,6 +99,8 @@ public class Editor3D implements UILayer {
     public void delTexture(int i) {
         if (i < 0 || i > textures.size())
             throw new RuntimeException("Номер тестуры указан некорректно.");
+        models.forEach(m -> m.getTextures().
+                        removeIf(t ->t.getId()==textures.get(i).getId()));
         textures.remove(i);
         System.out.println("Текстура удалена!");
     }
