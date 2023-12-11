@@ -2,7 +2,7 @@ package ru.geekbrains.lesson5;
 
 import java.util.*;
 
-public class Editor3D implements UILayer {
+public class Editor3D implements UILayer,DelObject {
 
     private ProjectFile projectFile;
     private BusinessLogicalLayer businessLogicalLayer;
@@ -10,6 +10,14 @@ public class Editor3D implements UILayer {
     private Database database;
     private ArrayList<Model3D> models;
     private ArrayList<Texture> textures;
+
+    public ArrayList<Model3D> getModels() {
+        return models;
+    }
+
+    public ArrayList<Texture> getTextures() {
+        return textures;
+    }
 
     public Editor3D() {
     }
@@ -103,5 +111,11 @@ public class Editor3D implements UILayer {
                         removeIf(t ->t.getId()==textures.get(i).getId()));
         textures.remove(i);
         System.out.println("Текстура удалена!");
+    }
+
+    @Override
+    public void delAll(ArrayList<?> obj) {
+        if(!obj.isEmpty()) obj.clear();
+        else System.out.println("Объекты не созданы");
     }
 }
